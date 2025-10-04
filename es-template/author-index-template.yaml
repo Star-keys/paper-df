@@ -1,0 +1,25 @@
+settings:
+  analysis:
+    filter:
+      ngram_filter:
+        type: edge_ngram
+        min_gram: 2
+        max_gram: 15
+    analyzer:
+      author_name_analyzer:
+        type: custom
+        tokenizer: standard
+        filter:
+          - lowercase
+          - ngram_filter
+
+mappings:
+  properties:
+    name:
+      type: text
+      analyzer: author_name_analyzer
+      fields:
+        keyword:
+          type: keyword
+    paperId:
+      type: keyword
